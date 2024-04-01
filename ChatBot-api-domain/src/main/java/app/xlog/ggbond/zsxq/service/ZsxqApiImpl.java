@@ -5,14 +5,13 @@ import app.xlog.ggbond.zsxq.model.vo.Topic;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ZsxqApiImpl implements ZsxqApi {
@@ -37,7 +36,7 @@ public class ZsxqApiImpl implements ZsxqApi {
             String Json = response.body().string();
 
             // 创建话题集合
-            ArrayList<Topic> topics = new ArrayList<Topic>();
+            List<Topic> topics = new ArrayList<Topic>();
 
             try {
                 JsonNode jsonNode = objectMapper.readValue(Json, JsonNode.class);
@@ -52,12 +51,49 @@ public class ZsxqApiImpl implements ZsxqApi {
                     topics.add(topic);
                 }
 
+                // 进行话题集合的筛选(如果话题有评论，则删除该元素)
+                topics = topics.stream()
+                        .filter(t -> t.getCommentsCount() == 0)
+                        .collect(Collectors.toList());
+
                 return topics;
             } catch (IOException e) {
                 e.printStackTrace();
+                return null;
             }
         }
+    }
 
-        return null;
+    @Override
+    public void answerTopics(String cookie, List<Topic> topics) throws IOException {
+        for (Topic t : topics) {
+            final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("application/json; charset=UTF-8");
+            final OkHttpClient client = new OkHttpClient();
+
+            // 填入要发送的内容
+            String text = "OKHttp, Jackson";
+            String reqData = "{\n" +
+                    "  \"req_data\": {\n" +
+                    "    \"text\": \"" +
+                    text +
+                    "\\n\",\n" +
+                    "    \"image_ids\": [],\n" +
+                    "    \"mentioned_user_ids\": []\n" +
+                    "  }\n" +
+                    "}";
+
+            // https://api.zsxq.com/v2/topics/2855848858441111/comments
+            Request request = new Request.Builder()
+                    .url("https://api.zsxq.com/v2/topics/" + t.getTopicId() + "/comments")
+                    .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, reqData))
+                    .addHeader("cookie", cookie)
+                    .addHeader("Content-type", "application/json; charset=UTF-8")
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                System.out.println(response.body().string());
+            }
+        }
     }
 }

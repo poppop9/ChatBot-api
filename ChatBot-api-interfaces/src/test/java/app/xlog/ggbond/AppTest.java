@@ -44,4 +44,9 @@ public class AppTest {
             System.out.println(topic.getTopicId() + " " + topic.getText() + " " + topic.getCommentsCount());
         }
     }
+
+    @Test
+    public void TestAnswer() throws IOException {
+        zsxqApi.answerTopics(cookie, zsxqApi.getWithoutCommentsTopics(groupId, cookie));
+    }
 }
