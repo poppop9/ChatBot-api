@@ -40,7 +40,7 @@ class ChatBotApiApplicationTests {
     public void Answered() throws IOException {
         String postBody = "{\n" +
                 "  \"req_data\": {\n" +
-                "    \"text\": \"这也太简单了\\n\",\n" +
+                "    \"text\": \"你自己试试\\n\",\n" +
                 "    \"image_ids\": [],\n" +
                 "    \"mentioned_user_ids\": []\n" +
                 "  }\n" +
