@@ -1,5 +1,6 @@
 package app.xlog.ggbond.zsxq.service;
 
+import app.xlog.ggbond.ChatGPT.ChatGPTapi;
 import app.xlog.ggbond.zsxq.ZsxqApi;
 import app.xlog.ggbond.zsxq.model.vo.Topic;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -65,17 +66,19 @@ public class ZsxqApiImpl implements ZsxqApi {
     }
 
     @Override
-    public void answerTopics(String cookie, List<Topic> topics) throws IOException {
+    public void answerTopics(String cookie, List<Topic> topics, ChatGPTapi chatGPTapi, String apiKey) throws IOException {
         for (Topic t : topics) {
             final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("application/json; charset=UTF-8");
             final OkHttpClient client = new OkHttpClient();
 
-            // 填入要发送的内容
-            String text = "OKHttp, Jackson";
+            // 拿到topic的问题，交给GPT
+            String answer = chatGPTapi.getAnswer(apiKey, t.getText());
+//            String answer = "有效有效";
+
             String reqData = "{\n" +
                     "  \"req_data\": {\n" +
                     "    \"text\": \"" +
-                    text +
+                    answer +
                     "\\n\",\n" +
                     "    \"image_ids\": [],\n" +
                     "    \"mentioned_user_ids\": []\n" +

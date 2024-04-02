@@ -33,23 +33,27 @@ public class AppTest {
     private ZsxqApi zsxqApi;
 
     @Test
-    public void Test() throws IOException {
+    public void TestGetWithoutCommentsTopics() throws IOException {
         List<Topic> withoutCommentsTopics = zsxqApi.getWithoutCommentsTopics(groupId, cookie);
         for (Topic topic : withoutCommentsTopics) {
             System.out.println(topic.getTopicId() + " " + topic.getText() + " " + topic.getCommentsCount());
         }
     }
 
-    @Test
-    public void TestAnswer() throws IOException {
-        zsxqApi.answerTopics(cookie, zsxqApi.getWithoutCommentsTopics(groupId, cookie));
-    }
-
     @Autowired
     private ChatGPTapi chatGPTapi;
 
+    @Value("${ChatBot-api.apiKey}")
+    private String apiKey;
+
+    @Test
+    public void TestAnswer() throws IOException {
+        zsxqApi.answerTopics(cookie, zsxqApi.getWithoutCommentsTopics(groupId, cookie), chatGPTapi, apiKey);
+    }
+
     @Test
     public void TestChatGPT() throws IOException {
-        chatGPTapi.getAnswer("列举一下 JavaWeb 最新技术");
+        String answer = chatGPTapi.getAnswer(apiKey, "东莞在哪里");
+        System.out.println(answer);
     }
 }
