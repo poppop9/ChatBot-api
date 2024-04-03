@@ -48,12 +48,12 @@ public class AppTest {
 
     @Test
     public void TestAnswer() throws IOException {
-        zsxqApi.answerTopics(cookie, zsxqApi.getWithoutCommentsTopics(groupId, cookie), chatGPTapi, apiKey);
+        zsxqApi.answerTopics(cookie, zsxqApi.getWithoutCommentsTopics(groupId, cookie).get(0), "ddd");
     }
 
     @Test
     public void TestChatGPT() throws IOException {
-        String answer = chatGPTapi.getAnswer(apiKey, "东莞在哪里");
+        String answer = chatGPTapi.getAnswer("东莞在哪里");
         System.out.println(answer);
     }
 }
