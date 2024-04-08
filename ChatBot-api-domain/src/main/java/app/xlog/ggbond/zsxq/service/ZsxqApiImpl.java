@@ -70,6 +70,8 @@ public class ZsxqApiImpl implements ZsxqApi {
         final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("application/json; charset=UTF-8");
         final OkHttpClient client = new OkHttpClient();
 
+        answer = answer.replace("\n", "\\n");
+
         String reqData = "{\n" +
                 "  \"req_data\": {\n" +
                 "    \"text\": \"" +

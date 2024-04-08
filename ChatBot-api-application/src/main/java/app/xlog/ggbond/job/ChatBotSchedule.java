@@ -1,5 +1,4 @@
-package app.xlog.ggbond.chatbotapiapplication.job;
-
+package app.xlog.ggbond.job;
 
 import app.xlog.ggbond.ChatGPT.ChatGPTapi;
 import app.xlog.ggbond.zsxq.ZsxqApi;
@@ -29,7 +28,7 @@ public class ChatBotSchedule {
     private String cookie;
 
     // 设置定时任务
-    @Scheduled(cron = "0/20 * * * * ?")
+    @Scheduled(cron = "0/10 * 7-22 * * ?")
     public void RunSchedule() {
         try {
             // 避免风控，把请求随机化
@@ -38,10 +37,13 @@ public class ChatBotSchedule {
                 return;
             }
 
-            // 避免半夜回答
-
             // 查询问题
             List<Topic> withoutCommentsTopics = zsxqApi.getWithoutCommentsTopics(groupId, cookie);
+
+            if (withoutCommentsTopics.isEmpty()) {
+                System.out.println("没有问题");
+                return;
+            }
 
             // 只回答集合中的最后一个问题
             if (!withoutCommentsTopics.isEmpty()) {

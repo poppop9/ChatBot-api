@@ -1,9 +1,8 @@
-package app.xlog.ggbond.chatbotapiapplication;
+package app.xlog.ggbond;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 public class ChatBotApiApplication {
 
     public static void main(String[] args) {

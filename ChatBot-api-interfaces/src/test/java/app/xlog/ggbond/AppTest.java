@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
@@ -53,7 +52,7 @@ public class AppTest {
 
     @Test
     public void TestChatGPT() throws IOException {
-        String answer = chatGPTapi.getAnswer("东莞在哪里");
+        String answer = chatGPTapi.getAnswer("介绍一下嘉兴大学");
         System.out.println(answer);
     }
 }
