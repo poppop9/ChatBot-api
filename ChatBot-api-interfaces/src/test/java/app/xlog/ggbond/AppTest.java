@@ -3,8 +3,6 @@ package app.xlog.ggbond;
 import app.xlog.ggbond.ChatGPT.ChatGPTapi;
 import app.xlog.ggbond.zsxq.ZsxqApi;
 import app.xlog.ggbond.zsxq.model.vo.Topic;
-import okhttp3.*;
-import org.springframework.http.MediaType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

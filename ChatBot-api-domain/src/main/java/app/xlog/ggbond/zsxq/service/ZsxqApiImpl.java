@@ -1,6 +1,5 @@
 package app.xlog.ggbond.zsxq.service;
 
-import app.xlog.ggbond.ChatGPT.ChatGPTapi;
 import app.xlog.ggbond.zsxq.ZsxqApi;
 import app.xlog.ggbond.zsxq.model.vo.Topic;
 import com.fasterxml.jackson.databind.DeserializationFeature;

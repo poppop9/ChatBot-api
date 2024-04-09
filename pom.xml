@@ -17,8 +17,8 @@
     <name>ChatBot-api</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>ChatBot-api-domain</module>
         <module>ChatBot-api-application</module>
+        <module>ChatBot-api-domain</module>
         <module>ChatBot-api-interfaces</module>
         <module>ChatBot-api-infrastructure</module>
     </modules>
@@ -83,7 +83,6 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.17.0</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -91,19 +90,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
-                    </image>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
             </plugin>
         </plugins>
     </build>

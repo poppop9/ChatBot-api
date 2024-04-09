@@ -1,4 +1,4 @@
-package app.xlog.ggbond.job;
+package app.xlog.ggbond.application.job;
 
 import app.xlog.ggbond.ChatGPT.ChatGPTapi;
 import app.xlog.ggbond.zsxq.ZsxqApi;
@@ -19,6 +19,7 @@ import java.util.Random;
 public class ChatBotSchedule {
     @Autowired
     private ZsxqApi zsxqApi;
+
     @Autowired
     private ChatGPTapi chatGPTapi;
 
@@ -45,14 +46,12 @@ public class ChatBotSchedule {
                 return;
             }
 
-            // 只回答集合中的最后一个问题
-            if (!withoutCommentsTopics.isEmpty()) {
-                Topic t = withoutCommentsTopics.get(withoutCommentsTopics.size() - 1);
-                // 拿到回答
-                String answer = chatGPTapi.getAnswer(t.getText());
-                // 回答响应
-                zsxqApi.answerTopics(cookie, t, answer);
-            }
+            Topic t = withoutCommentsTopics.get(withoutCommentsTopics.size() - 1);
+            // 拿到回答
+            String answer = chatGPTapi.getAnswer(t.getText());
+            // 回答响应
+            zsxqApi.answerTopics(cookie, t, answer);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
