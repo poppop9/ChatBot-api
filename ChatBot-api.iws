@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad8dba32-eba1-4c65-b3ef-5f35149bc91b" name="更改" comment="小修改">
+      <change beforePath="$PROJECT_DIR$/ChatBot-api-application/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ChatBot-api-application/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatBot-api-application/src/main/java/app/xlog/ggbond/application/job/ChatBotSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatBot-api-application/src/main/java/app/xlog/ggbond/application/job/ChatBotSchedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChatBot-api.iws" beforeDir="false" afterPath="$PROJECT_DIR$/ChatBot-api.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,8 +273,9 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.App.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;secondary&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/idea_project/web_2&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -425,6 +429,8 @@
       <workItem from="1712642261109" duration="244000" />
       <workItem from="1712642520025" duration="4465000" />
       <workItem from="1712674447847" duration="643000" />
+      <workItem from="1712717165886" duration="29000" />
+      <workItem from="1712727055594" duration="348000" />
     </task>
     <task id="LOCAL-00001" summary="完成了所有功能的实现">
       <option name="closed" value="true" />
@@ -484,6 +490,21 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -494,7 +515,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="secondary" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>

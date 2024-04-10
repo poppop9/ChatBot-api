@@ -3,6 +3,8 @@ package app.xlog.ggbond.application.job;
 import app.xlog.ggbond.ChatGPT.ChatGPTapi;
 import app.xlog.ggbond.zsxq.ZsxqApi;
 import app.xlog.ggbond.zsxq.model.vo.Topic;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
@@ -32,9 +34,11 @@ public class ChatBotSchedule {
     @Scheduled(cron = "0/10 * 7-22 * * ?")
     public void RunSchedule() {
         try {
+            Logger logger = LoggerFactory.getLogger(ChatBotSchedule.class);
+
             // 避免风控，把请求随机化
             if (new Random().nextBoolean()) {
-                System.out.println("这次不回答，避免风控");
+                logger.atInfo().log("这次不回答，避免风控");
                 return;
             }
 
@@ -42,7 +46,7 @@ public class ChatBotSchedule {
             List<Topic> withoutCommentsTopics = zsxqApi.getWithoutCommentsTopics(groupId, cookie);
 
             if (withoutCommentsTopics.isEmpty()) {
-                System.out.println("没有问题");
+                logger.atInfo().log("没有问题");
                 return;
             }
 
